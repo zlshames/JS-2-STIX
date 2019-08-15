@@ -160,3 +160,13 @@ export const ToolLabels = {
     REMOTE_ACCESS: 'remote-access',
     VULNERABILITY_SCANNING: 'vulnerability-scanning'
 }
+
+export const RelationshipTypes = {
+    TARGETS: 'targets',
+    USES: 'uses',
+    ATTRIBUTED_TO: 'attributed-to',
+    MITIGATES: 'mitigates',
+    INDICATES: 'indicates',
+    VARIANT_OF: 'variant-of',
+    IMPERSONATES: 'impersonates'
+}

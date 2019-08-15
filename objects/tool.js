@@ -1,14 +1,16 @@
 import BaseObject from "./baseObject"
 import KillChainPhase from './killChainPhase'
+import { ToolLabels } from '../constants/vocabulary'
 
-class AttackPattern extends BaseObject {
+class Tool extends BaseObject {
 
     name = null
     description = null
     killChainPhases = []
+    toolVersion = null
     
     constructor(name) {
-        super('attack-pattern')
+        super('tool')
 
         this.name = name
     }
@@ -20,15 +22,28 @@ class AttackPattern extends BaseObject {
         this.killChainPhases.push(phase)
     }
 
+    addLabel(label) {
+        if (Object.values(ToolLabels).indexOf(label.toLowerCase()) === -1)
+            throw Error(`Invalid tool label! Must be one of the following: ${Array(Object.values(ToolLabels)).join(', ')}`)
+
+        this.labels.append(label.toLowerCase())
+    }
+
     toJSON() {
+        if (!this.labels)
+            throw Error(`STIX 2.0 requires tool labels!`)
         if (!this.name)
-            throw Error(`STIX 2.0 requires an attack pattern name!`)
+            throw Error(`STIX 2.0 requires a tool name!`)
 
         let output = super.toJSON()
         output.name = this.name
 
         if (this.description)
             output.description = this.description
+        if (this.toolVersion)
+            output.tool_version = this.toolVersion
+        if (this.labels)
+            output.labels = this.labels
 
         let killChainPhases = []
         for (let i in this.killChainPhases)
@@ -41,4 +56,4 @@ class AttackPattern extends BaseObject {
     }
 }
 
-export default AttackPattern
+export default Tool

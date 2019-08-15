@@ -1,4 +1,5 @@
 import Identity from './identity'
+import ExternalReference from './externalReference'
 
 class BaseObject {
 
@@ -29,6 +30,13 @@ class BaseObject {
         }
     }
 
+    addExternalReference(ref) {
+        if (!(ref instanceof ExternalReference))
+            throw Error('You can only add an external reference of the ExternalReference type!')
+            
+        this.externalReferences.push(ref)
+    }
+
     toJSON() {
         if (!this.type)
             throw Error(`STIX 2.0 requires an object type!`)
@@ -52,12 +60,20 @@ class BaseObject {
             output.revoked = this.revoked
         if (this.labels)
             output.labels = this.labels
-        if (this.externalReferences)
-            output.external_references = this.externalReferences
         if (this.objectMarkingRefs)
             output.object_marking_refs = this.objectMarkingRefs
-        if (this.granular_markings)
-            output.granular_markings = this.granularMarkings
+
+        let granularMarkings = []
+        for (let i in this.granularMarkings)
+            granularMarkings.push(i.toJSON())
+        if (granularMarkings)
+            output.granular_markings = granularMarkings
+
+        let externalRefs = []
+        for (let i in this.externalReferences)
+            externalRefs.push(i.toJSON())
+        if (externalRefs)
+            output.external_references = externalRefs
 
         return output
     }

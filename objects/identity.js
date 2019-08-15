@@ -4,7 +4,6 @@ import { IdentityClasses, IndustrySectors } from '../constants/vocabulary'
 class Identity extends BaseObject {
 
     name = null
-    labels = []
     description = null
     identityClass = null
     sectors = []
@@ -18,17 +17,17 @@ class Identity extends BaseObject {
     }
 
     set identityClass(identity) {
-        if (Object.values(IdentityClasses).indexOf(identity.toLowerCase()) == -1)
-            throw Error(`Invalid identity class! Type must be one of the following: ${Array(Object.values(IdentityClasses)).join(', ')}`)
+        if (Object.values(IdentityClasses).indexOf(identity.toLowerCase()) === -1)
+            throw Error(`Invalid identity class! Must be one of the following: ${Array(Object.values(IdentityClasses)).join(', ')}`)
 
         this.identityClass = identity.toLowerCase()
     }
 
     addSector(sector) {
-        if (Object.values(IndustrySectors).indexOf(sector.toLowerCase()) == -1)
-            throw Error(`Invalid identity class! Type must be one of the following: ${Array(Object.values(IndustrySectors)).join(', ')}`)
+        if (Object.values(IndustrySectors).indexOf(sector.toLowerCase()) === -1)
+            throw Error(`Invalid identity class! Must be one of the following: ${Array(Object.values(IndustrySectors)).join(', ')}`)
 
-        if (this.sectors.indexOf(sector.toLowerCase()) == -1)
+        if (this.sectors.indexOf(sector.toLowerCase()) === -1)
             this.sectors.push(sector.toLowerCase())
     }
 

@@ -16,6 +16,11 @@ class Campaign extends BaseObject {
         this.name = name
     }
 
+    addAlias(alias) {
+        if (this.aliases.indexOf(alias) === -1)
+            this.aliases.push(alias)
+    }
+
     toJSON() {
         if (!this.name)
             throw Error(`STIX 2.0 requires a campaign name!`)

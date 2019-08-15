@@ -32,8 +32,8 @@ class Marking {
     }
 
     set definitionType(defType) {
-        if (Object.values(DefinitionTypes).indexOf(defType.toLowerCase()) == -1)
-            throw Error(`Invalid definition type! Type must be one of the following: ${Array(Object.values(DefinitionTypes)).join(', ')}`)
+        if (Object.values(DefinitionTypes).indexOf(defType.toLowerCase()) === -1)
+            throw Error(`Invalid definition type! Must be one of the following: ${Array(Object.values(DefinitionTypes)).join(', ')}`)
 
         this.definitionType = defType.toLowerCase()
     }
@@ -48,9 +48,9 @@ class Marking {
 
     setTLP(tlp) {
         if (this.definitionType !== DefinitionTypes.TLP)
-            throw Error('The definition type must be "TLP" in order to set the TLP')
-        if (Object.values(TLPs).indexOf(tlp.toLowerCase()) == -1)
-            throw Error(`Invalid TLP! Type must be one of the following: ${Array(Object.values(TLPs)).join(', ')}`)
+            throw Error('The definition Must be "TLP" in order to set the TLP')
+        if (Object.values(TLPs).indexOf(tlp.toLowerCase()) === -1)
+            throw Error(`Invalid TLP! Must be one of the following: ${Array(Object.values(TLPs)).join(', ')}`)
 
         this.definition = {
             tlp: tlp
@@ -59,7 +59,7 @@ class Marking {
 
     setStatement(statement) {
         if (this.definitionType !== DefinitionTypes.STATEMENT)
-            throw Error('The definition type must be "statement" in order to set the statement')
+            throw Error('The definition Must be "statement" in order to set the statement')
 
         this.definition = {
             statement: statement
