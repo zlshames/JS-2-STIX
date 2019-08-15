@@ -1,0 +1,36 @@
+{
+  "name": "js-2-stix",
+  "version": "1.0.0",
+  "description": "A Javascript Library to create STIX 2.0 packages",
+  "main": "index.js",
+  "directories": {
+    "examples": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js",
+    "test-threat-actor": "babel-node ./examples/identifiying-a-threatq-actor-profile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zlshames/JS-2-STIX.git"
+  },
+  "keywords": [
+    "stix",
+    "2.0"
+  ],
+  "author": "Zach Shames",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zlshames/JS-2-STIX/issues"
+  },
+  "homepage": "https://github.com/zlshames/JS-2-STIX#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-classes": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
+  }
+}
